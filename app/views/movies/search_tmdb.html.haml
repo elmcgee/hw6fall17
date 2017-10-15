@@ -2,21 +2,21 @@
 = form_tag movies_search_tmdb_path, :method => :post do
    = label :movie, :title, 'Search for movie titles containing:'
    = text_field :movies, 'title', :id => 'search_box2'
-  %thead
+%thead
+  %tr
+    %th Title
+   // %th{:class => @title_header}, movies_path(:sort => 'title', :ratings => @selected_ratings), :id => 'title_header'
+    %th Rating
+    %th Release Date
+    %th Add Movie
+    //%th{:class => @date_header}, movies_path(:sort => 'release_date', :ratings => @selected_ratings), :id => 'release_date_header'
+%tbody
+  - @movies.each do |movie|
     %tr
-      %th Title
-     // %th{:class => @title_header}, movies_path(:sort => 'title', :ratings => @selected_ratings), :id => 'title_header'
-      %th Rating
-      %th Release Date
-      %th Add Movie
-      //%th{:class => @date_header}, movies_path(:sort => 'release_date', :ratings => @selected_ratings), :id => 'release_date_header'
-  %tbody
-    - @movies.each do |movie|
-      %tr
-        %td= movie.title 
-        %td= movie.rating
-        %td= movie.release_date
-        %td= link_to "More about #{movie.title}", movie_path(movie)  
-        %td=check_box_tag( "Add to", 1 , false)
+      %td= movie.title 
+      %td= movie.rating
+      %td= movie.release_date
+      %td= link_to "More about #{movie.title}", movie_path(movie)  
+      %td=check_box_tag( "Add to", 1 , false)
 = submit_tag 'search movie'      
  
