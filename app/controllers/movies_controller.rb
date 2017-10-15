@@ -63,8 +63,8 @@ class MoviesController < ApplicationController
   
   def search_tmdb
     flash[:notice] = "EMBO LIKES DUCKS!"
-    @movies=Movie.find_in_tmdb(params[:search_terms])
-    redirect_to movies_search_tmdb_path
+    @movie = Movie.all 
+    #@movies=Movie.find_in_tmdb(params[:search_terms])
   end
 
 end

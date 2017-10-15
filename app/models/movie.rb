@@ -14,8 +14,11 @@ class Movie::InvalidKeyError < StandardError ; end
       puts('hello')
       matching_movies.each do |ii|
         if(ii == '/^[the]+/')
+          
          smovie[:title] = matching_movies.title
          smovie[:rating] = matching_movies.rating
+         smovie[:release_date] = matching_movies.release_date
+         smovie[:overview] = matching_movies.overview
          matching_movies = smovie
         end
       end
