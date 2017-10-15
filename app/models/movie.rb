@@ -8,7 +8,7 @@ class Movie::InvalidKeyError < StandardError ; end
   def self.find_in_tmdb(string)
     begin 
       require 'themoviedb'
-      TMdb::Api.key("f4702b08c0ac6ea5b51425788bb262562")
+      Tmdb::Api.key("f4702b08c0ac6ea5b51425788bb262562")
       smoive = Array.new
       smovie << string
       smovie.each do |ii|
