@@ -5,12 +5,10 @@
 %thead
   %tr
     %th Title
-   // %th{:class => @title_header}, movies_path(:sort => 'title', :ratings => @selected_ratings), :id => 'title_header'
     %th Rating
     %th Release Date
     %th Add Movie
-    //%th{:class => @date_header}, movies_path(:sort => 'release_date', :ratings => @selected_ratings), :id => 'release_date_header'
-%tbody
+  %tbody
   - @movies.each do |movie|
     %tr
       %td= movie.title 
