@@ -11,9 +11,11 @@ class Movie::InvalidKeyError < StandardError ; end
       Tmdb::Api.key("f4702b08c0ac6ea5b51425788bb262562")
       smoive = Array.new
       smovie << string
+      puts('hello')
       smovie.each do |ii|
         if(ii == '/^[the]+/')
          Tmdb::Movie.find(ii)
+         puts(ii)
         end
       end
       Tmdb::Movie.find(string)
