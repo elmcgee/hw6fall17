@@ -64,7 +64,7 @@ class MoviesController < ApplicationController
   def search_tmdb
     flash[:notice] = "EMBO LIKES DUCKS!"
     
-    @movies=Movie.find_in_tmdb(params[:search_terms])
+    #@movies=Movie.find_in_tmdb(params[:search_terms])
   end
 
 end
