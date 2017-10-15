@@ -11,16 +11,13 @@ class Movie::InvalidKeyError < StandardError ; end
     begin 
       smovie = Hash.new
       matching_movies = Tmdb::Movie.find(string)
-      puts('hello')
       matching_movies.each do |ii|
-        if(ii == '/^[the]+/')
-          
+        puts("MADE IT")
          smovie[:title] = matching_movies.title
          smovie[:rating] = matching_movies.rating
          smovie[:release_date] = matching_movies.release_date
          smovie[:overview] = matching_movies.overview
-         matching_movies = smovie
-        end
+         matching_movies << smovie
       end
       Tmdb::Movie.find(matching_movies)
     rescue Tmdb::InvalidApiKeyError
