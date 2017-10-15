@@ -9,6 +9,13 @@ class Movie::InvalidKeyError < StandardError ; end
     begin 
       require 'themoviedb'
       TMdb::Api.key("f4702b08c0ac6ea5b51425788bb262562")
+      smoive = Array.new
+      smovie << string
+      smovie.each do |ii|
+        if(ii == '/^[the]+/')
+         Tmdb::Movie.find(ii)
+        end
+      end
       Tmdb::Movie.find(string)
     rescue Tmdb::InvalidApiKeyError
       raise Movie::InvalidKeyError, 'Invalid API key'
