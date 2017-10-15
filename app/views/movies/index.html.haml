@@ -27,8 +27,8 @@
         
         
 = form_tag movies_search_tmdb_path, :method => :post, :id => 'search_form' do
-  = label :movie, :title, 'Search for movie titles containing:'
-  = text_field :movie, 'title', :id => 'search_box'
+  = label :movie, :search_terms, 'Search for movie titles containing:'
+  = text_field :search_terms, 'title', :id => 'search_box'
   = submit_tag 'search tmdb movie', :id => 'search_button'
   
   
