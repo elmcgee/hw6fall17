@@ -6,19 +6,21 @@ class Movie < ActiveRecord::Base
 class Movie::InvalidKeyError < StandardError ; end
   
   def self.find_in_tmdb(string)
+    require 'themoviedb'
+    Tmdb::Api.key("f4702b08c0ac6ea5b51425788bb26562")
     begin 
-      require 'themoviedb'
-      Tmdb::Api.key("f4702b08c0ac6ea5b51425788bb262562")
-      smovie = Array.new
-      smovie = string.split(" ")
+      smovie = Hash.new
+      matching_movies = Tmdb::Movie.find(string)
       puts('hello')
-      smovie.each do |ii|
+      matching_movies.each do |ii|
         if(ii == '/^[the]+/')
-         Tmdb::Movie.find(ii)
-         puts(ii)
+         smovie[:title] = matching_movies.title
+         smovie[:rating] = matching_movies.rating
+         smovie[:overview] = matching_movies.overview
+         matching_movies = smovie
         end
       end
-      Tmdb::Movie.find(string)
+      Tmdb::Movie.find(matching_movies)
     rescue Tmdb::InvalidApiKeyError
       raise Movie::InvalidKeyError, 'Invalid API key'
     end
