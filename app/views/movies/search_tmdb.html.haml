@@ -11,7 +11,7 @@
     - @movies.each do |movie|
       %tr
         %td= movie.title 
-        %td= movie.rating
+        %td = movie.ratings
         %td= movie.release_date
 //        %td = check_box_tag, "Add to", 1 , false
 = submit_tag 'search movie'      
