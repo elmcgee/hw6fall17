@@ -14,7 +14,6 @@
       %td= movie.title 
       %td= movie.rating
       %td= movie.release_date
-      %td= link_to "More about #{movie.title}", movie_path(movie)  
       %td=check_box_tag( "Add to", 1 , false)
 = submit_tag 'search movie'      
  
