@@ -1,7 +1,7 @@
 %h2 Search for movies 
 = form_tag movies_search_tmdb_path, :method => :post do
-   = label :movie, :title, 'Search for movie titles containing:'
-   = text_field :movies, 'title', :id => 'search_box2'
+  = label :movie, :title, 'Search for movie titles containing:'
+  = text_field :movies, 'title', :id => 'search_box2'
 %table#movies
   %thead
     %tr
