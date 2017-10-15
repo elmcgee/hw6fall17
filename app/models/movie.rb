@@ -16,7 +16,6 @@ class Movie::InvalidKeyError < StandardError ; end
         if(ii == '/^[the]+/')
          smovie[:title] = matching_movies.title
          smovie[:rating] = matching_movies.rating
-         smovie[:overview] = matching_movies.overview
          matching_movies = smovie
         end
       end
