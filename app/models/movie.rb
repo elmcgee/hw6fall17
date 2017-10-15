@@ -9,8 +9,8 @@ class Movie::InvalidKeyError < StandardError ; end
     begin 
       require 'themoviedb'
       Tmdb::Api.key("f4702b08c0ac6ea5b51425788bb262562")
-      smoive = Array.new
-      smovie = string.gsub(/(\[\"|\"\])/, '').split(' ')
+      smovie = Array.new
+      smovie = string.split(' ')
       puts('hello')
       smovie.each do |ii|
         if(ii == '/^[the]+/')
