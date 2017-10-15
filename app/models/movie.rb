@@ -13,10 +13,10 @@ class Movie::InvalidKeyError < StandardError ; end
       matching_movies = Tmdb::Movie.find(string)
       matching_movies.each do |ii|
         puts("MADE IT")
-         smovie[:title] = matching_movies.title
-         smovie[:rating] = matching_movies.rating
-         smovie[:release_date] = matching_movies.release_date
-         smovie[:overview] = matching_movies.overview
+         smovie[:title] = ii.title
+         smovie[:rating] = ii.rating
+         smovie[:release_date] = ii.release_date
+         smovie[:overview] = ii.overview
          matching_movies << smovie
       end
       Tmdb::Movie.find(matching_movies)
