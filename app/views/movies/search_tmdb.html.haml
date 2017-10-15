@@ -15,5 +15,5 @@
           %td= movie.rating
           %td= movie.release_date
           %td=check_box_tag( "Add to", 1 , false)
-  = submit_tag 'Add Searched Movies'      
+  = submit_tag 'Add Searched Movies', redirect_to movie_path     
  
