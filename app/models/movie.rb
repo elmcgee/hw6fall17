@@ -15,6 +15,7 @@ class Movie::InvalidKeyError < StandardError ; end
       puts (matching_movies.to_s)
       matching_movies.each do |ii|
         puts("MADE IT")
+         smovie[:tmdb_id] = ii.tmdb_id
          smovie[:title] = ii.title
          smovie[:release_date] = ii.release_date
          smovie[:overview] = ii.overview
