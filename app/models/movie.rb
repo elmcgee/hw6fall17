@@ -9,7 +9,8 @@ class Movie::InvalidKeyError < StandardError ; end
     require 'themoviedb'
     Tmdb::Api.key("f4702b08c0ac6ea5b51425788bb26562")
     begin 
-      smovie = Hash.new
+      @smovie = Hash.new
+      
       matching_movies = Tmdb::Movie.find(string)
       puts (matching_movies.to_s)
       matching_movies.each do |ii|
@@ -17,8 +18,9 @@ class Movie::InvalidKeyError < StandardError ; end
          smovie[:title] = ii.title
          smovie[:release_date] = ii.release_date
          smovie[:overview] = ii.overview
+         puts(Tmdb::Movie.releases(ii.id))
       end
-      Tmdb::Movie.find(smovie)
+      Tmdb::Movie.find(@smovie)
     rescue Tmdb::InvalidApiKeyError
       raise Movie::InvalidKeyError, 'Invalid API key'
     end
