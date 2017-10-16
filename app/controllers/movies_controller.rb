@@ -62,14 +62,14 @@ class MoviesController < ApplicationController
   end
   
   def search_tmdb
-  
-    moviehash = params[:movie][:search_terms]
-    if (moviehash == nil) || (moviehash == " ")
+
+    if(params[:search_tmdb].blank?)
       flash[:warning] = "invalid input"
       redirect_to movies_path
     else
-      @movies=Movie.find_in_tmdb( moviehash)
+      @movie = Movie.find_in_tmdb(params[:search_tmdb])
     end
+
   end
   
   def add_tmdb
