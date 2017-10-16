@@ -63,16 +63,17 @@ class MoviesController < ApplicationController
   
   def search_tmdb
   
-    if params[:movie][:search_terms] == nil || params[:movie][:search_terms] ==" "
+    moviehash = params[:movie][:search_terms]
+    if (moviehash == nil) || (moviehash == " ")
       flash[:warning] = "invalid input"
       redirect_to movies_path
     else
-      @movies=Movie.find_in_tmdb( params[:movie][:search_terms] )
+      @movies=Movie.find_in_tmdb( moviehash)
     end
   end
   
   def add_tmdb
-    params[:tmbd_movies].key.each_with_index do|tmbd, ii|
+    params[:tmbd_movies].keys.each_with_index do|tmbd, ii|
       Movie.create_from_tmdb(tmbd)
     end
     flash[:notice] = "Movies successfully added to Rotten Potatoes"
