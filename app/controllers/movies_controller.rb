@@ -64,10 +64,10 @@ class MoviesController < ApplicationController
   def search_tmdb
    # flash[:notice] = "EMBO LIKES DUCKS!"
     #@movies =Movie.all
-    if(params[:search_terms] == nil or params[:search_terms] = " ")
-       flash[:warning] = "Invalid search term, please enter something to search"
-       redirect_to movies_search_tmdb_path
-    end
+   # if(params[:search_terms] == nil or params[:search_terms] = " ")
+    #   flash[:warning] = "Invalid search term, please enter something to search"
+     #  redirect_to movies_search_tmdb_path
+    #end
        @movies=Movie.find_in_tmdb(params[:movie][:search_terms])
   
   end
