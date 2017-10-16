@@ -10,8 +10,9 @@ describe MoviesController do
       post :search_tmdb, {:search_terms => 'Ted'}
     end
     it 'should select the Search Results template for rendering' do
-      allow(Movie).to receive(:find_in_tmdb)
-      post :search_tmdb, {:search_terms => 'Ted'}
+      allow(Movie).to receive(:find_in_tmdb) 
+      fake_results = [double('movie1'), double('movie2')]
+      post :search_tmdb, {:search_terms => 'Ted'} .and_return(fake_results)
       expect(response).to render_template('search_tmdb')
     end  
     it 'should make the TMDb search results available to that template' do
