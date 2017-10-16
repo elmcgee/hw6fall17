@@ -13,6 +13,6 @@
           %td= movie[:title] 
           %td= movie[:rating]
           %td= movie[:release_date]
-          %td=check_box_tag("Add to", 1 , false)
+          %td=check_box_tag("tmbd_movies[#{movie[:tmdb_id]}]", 1 , false, :id => "checkbox_#{movie[:tmdb_id]}")
   = submit_tag 'Add Searched Movies'    
  
