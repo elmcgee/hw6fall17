@@ -71,12 +71,10 @@ class MoviesController < ApplicationController
   end
   
   def add_tmdb
-    message = " "
-    params[tmbd_movies].key.each_with_index do|tmbd, ii|
+    params[:tmbd_movies].key.each_with_index do|tmbd, ii|
       Movie.create_from_tmdb(tmbd)
     end
-    message = "Movies successfully added to Rotten Potatoes"
-    flash[:notice] = message
+    flash[:notice] = "Movies successfully added to Rotten Potatoes"
     redirect_to movies_path
   end
 end

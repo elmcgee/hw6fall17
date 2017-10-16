@@ -39,32 +39,24 @@ class Movie::InvalidKeyError < StandardError ; end
       require 'themoviedb'
       Tmdb::Api.key("f4702b08c0ac6ea5b51425788bb26562")
       begin 
-      selected_movies = Array.new
-      rmovie = Array.new
       checked_movies = Tmdb::Movie.detail(id)
       smovie = Hash.new
-      smovie[:tmdb_id] = checked_movies.id
-      smovie[:title] = checked_movies.title
-      smovie[:overview] = checked_movies.overview
-       rmovie = Tmdb::Movie.releases(checked_movies.id)["countries"]
+      smovie[:tmdb_id] = checked_movies['id']
+      smovie[:title] = checked_movies['title']
+      smovie[:overview] = checked_movies['overview']
+       Tmdb::Movie.releases(checked_movies.id)["countries"].each do|rmovie|
             if(rmovie["iso_3166_1"] == "US" )
               if(Movie.all_ratings.include?(rmovie["certification"]))
                 smovie[:rating] = rmovie["certification"]
                 smovie[:release_date]= rmovie["release_date"]
-                selected_movies << smovie
               end
               break
             end
         end
+      Movie.create!(smovie)
+      rescue Tmdb::InvalidApiKeyError
+        raise Movie::InvalidKeyError, 'Invalid API key'
       end
-      Movie.create!(selected_movies)
-    rescue Tmdb::InvalidApiKeyError
-      raise Movie::InvalidKeyError, 'Invalid API key'
-    end
     end
   
-  
-  
-  
-
 end
