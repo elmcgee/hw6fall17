@@ -9,13 +9,13 @@ class Movie::InvalidKeyError < StandardError ; end
     require 'themoviedb'
     Tmdb::Api.key("f4702b08c0ac6ea5b51425788bb26562")
     begin 
-      @smovie = Hash.new
+      smovie = Hash.new
       
       matching_movies = Tmdb::Movie.find(string)
       puts (matching_movies)
       matching_movies.each do |ii|
         puts("MADE IT")
-         smovie[:tmdb_id] = ii.tmdb_id
+         smovie[:tmdb_id] = ii.id
          smovie[:title] = ii.title
          smovie[:release_date] = ii.release_date
          smovie[:overview] = ii.overview
