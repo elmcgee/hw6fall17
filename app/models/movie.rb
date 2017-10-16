@@ -11,7 +11,7 @@ class Movie::InvalidKeyError < StandardError ; end
     begin 
       smovie = Hash.new
       matching_movies = Tmdb::Movie.find(string)
-      puts (matching_movies.text)
+      puts (matching_movies.to_s)
       matching_movies.each do |ii|
         puts("MADE IT")
          smovie[:title] = ii.title
