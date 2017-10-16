@@ -11,15 +11,14 @@ class Movie::InvalidKeyError < StandardError ; end
     begin 
       smovie = Hash.new
       matching_movies = Tmdb::Movie.find(string)
+      puts (matching_movies)
       matching_movies.each do |ii|
         puts("MADE IT")
          smovie[:title] = ii.title
-         smovie[:rating] = ii.rating
          smovie[:release_date] = ii.release_date
          smovie[:overview] = ii.overview
-         matching_movies << smovie
       end
-      Tmdb::Movie.find(matching_movies)
+      Tmdb::Movie.find(smovie)
     rescue Tmdb::InvalidApiKeyError
       raise Movie::InvalidKeyError, 'Invalid API key'
     end
