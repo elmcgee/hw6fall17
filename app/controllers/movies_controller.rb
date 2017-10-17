@@ -66,7 +66,7 @@ class MoviesController < ApplicationController
     if(params[:search_tmdb].blank?)
       flash[:warning] = "invalid input nil"
       redirect_to movies_path
-    elsif (params[:movie.blank?) 
+    elsif (params[:movie].blank?) 
       flash[:warning] = "invalid empty"
       redirect_to movies_path
     else
