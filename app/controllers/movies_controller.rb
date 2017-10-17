@@ -63,15 +63,18 @@ class MoviesController < ApplicationController
   
   def search_tmdb
 
-    if(params[:search_terms][0].blank?)
+    if(params[:search_terms].blank?)
       flash[:warning] = "invalid input nil"
       redirect_to movies_path
-    elsif (params[:movie].blank?) 
+    else  
+       @movie = Movie.find_in_tmdb(params[:search_terms])
+      if(@movie.blank?)
       flash[:warning] = "invalid empty"
       redirect_to movies_path
     else
       flash[:notice] = "whoaaa"
-      @movie = Movie.find_in_tmdb(params[:search_terms][0])
+      @movie = Movie.find_in_tmdb(params[:search_terms])
+    end
     end
 
   end
