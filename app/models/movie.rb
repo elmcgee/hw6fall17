@@ -11,22 +11,26 @@ class Movie::InvalidKeyError < StandardError ; end
     begin 
       master_movies = Array.new
       matching_movies = Tmdb::Movie.find(string)
-      matching_movies.each do |ii|
-         smovie = Hash.new
-         smovie[:tmdb_id] = ii[:id]
-         smovie[:title] = ii[:title]
-         smovie[:overview] = ii[:overview]
-        Tmdb::Movie.releases(ii[:id])["countries"].each do|jj|
-            if(jj["iso_3166_1"] == "US" )
-              if(Movie.all_ratings.include?(jj["certification"]))
-                smovie[:rating] = jj["certification"]
-                smovie[:release_date]= jj["release_date"]
-                master_movies << smovie
-              end
-              break
+      if(matching_movies != nil)
+        matching_movies.each do |ii|
+          smovie = Hash.new
+          smovie[:tmdb_id] = ii.id
+          smovie[:title] = ii.title
+         if(Tmdb::Movie.releases(ii.id)['countries'] != nil) 
+            Tmdb::Movie.releases(ii.id)['countries'].each do|jj|
+                if(jj["iso_3166_1"] == "US" )
+                  if(Movie.all_ratings.include?(jj['certification']))
+                    smovie[:rating] = jj['certification']
+                    smovie[:release_date]= jj['release_date']
+                    master_movies << smovie
+                  end
+                  break
+                end
             end
         end
+        end
       end
+      puts master_movies
       master_movies
     rescue Tmdb::InvalidApiKeyError
       raise Movie::InvalidKeyError, 'Invalid API key'
@@ -42,17 +46,19 @@ class Movie::InvalidKeyError < StandardError ; end
       smovie = Hash.new
       smovie[:title] = checked_movies["title"]
       smovie[:description] = checked_movies["overview"]
-       Tmdb::Movie.releases(checked_movies["id"])["countries"].each do |rmovie|
-            if(rmovie["iso_3166_1"] == "US" )
-              if(Movie.all_ratings.include?(rmovie["certification"]))
-                smovie[:rating] = rmovie["certification"]
-                smovie[:release_date]= rmovie["release_date"]
-                Movie.create!(smovie)
+      if(Tmdb::Movie.releases(checked_movies["id"])["countries"] == nil)
+         Tmdb::Movie.releases(checked_movies["id"])["countries"].each do |rmovie|
+              if(rmovie["iso_3166_1"] == "US" )
+                if(Movie.all_ratings.include?(rmovie["certification"]))
+                  smovie[:rating] = rmovie["certification"]
+                  smovie[:release_date]= rmovie["release_date"]
+                  Movie.create!(smovie)
+                end
+                break
               end
-              break
-            end
+          end
         end
-   
+     
       rescue Tmdb::InvalidApiKeyError
         raise Movie::InvalidKeyError, 'Invalid API key'
       end
