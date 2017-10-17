@@ -72,7 +72,7 @@ class MoviesController < ApplicationController
     #else
       flash[:notice] = "whoaaa"
       
-      @movie = Movie.find_in_tmdb(params[:search_tmdb[0]])
+      @movie = Movie.find_in_tmdb(params[:search_tmdb)
     #end
 
   end
