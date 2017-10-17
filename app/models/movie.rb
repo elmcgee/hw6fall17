@@ -9,15 +9,14 @@ class Movie::InvalidKeyError < StandardError ; end
     require 'themoviedb'
     Tmdb::Api.key("f4702b08c0ac6ea5b51425788bb26562")
     begin 
-      
       master_movies = Array.new
       matching_movies = Tmdb::Movie.find(string)
       matching_movies.each do |ii|
          smovie = Hash.new
-         smovie[:tmdb_id] = ii.id
-         smovie[:title] = ii.title
-         smovie[:overview] = ii.overview
-        Tmdb::Movie.releases(ii.id)["countries"].each do|jj|
+         smovie[:tmdb_id] = ii[:id]
+         smovie[:title] = ii[:title]
+         smovie[:overview] = ii[:overview]
+        Tmdb::Movie.releases(ii[:id])["countries"].each do|jj|
             if(jj["iso_3166_1"] == "US" )
               if(Movie.all_ratings.include?(jj["certification"]))
                 smovie[:rating] = jj["certification"]
