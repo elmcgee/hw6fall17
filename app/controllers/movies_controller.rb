@@ -71,7 +71,7 @@ class MoviesController < ApplicationController
       redirect_to movies_path
     else
       flash[:notice] = "whoaaa"
-      @movie = Movie.find_in_tmdb(params[:movie][:search_tmdb])
+      @movie = Movie.find_in_tmdb(params[:search_tmdb])
     end
 
   end

@@ -1,4 +1,4 @@
-%h2 Search for movies "#{params[:movie][:search_terms]}"
+%h2 Search for movies "#{params[:search_terms][0]}"
 = form_tag movies_add_tmdb_path, :method => :post do
   %table#movies
     %thead
